@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Produtos</h1>
+<div class="d-flex flex-column gap-2 align-items-end"></div>
+    <div class="row">
+        {% for p in produtos %}
+        <div class="col-12 col-md-4">
+            <div class="card mb-3 p-3 shadow">
+                {% if p.imagem %}
+                <img src="{{ url_for('static', filename='imagens/' + p.imagem) }}" class="card-img-top">
+                {% else %}
+                <img src="{{ url_for('static', filename='imagens/placeholder.png') }}" class="card-img-top">
+                {% endif %} <div class="card-body">
+                    <h5>{{ p.nome }}</h5>
+                    <p>R$ {{ p.preco }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{%block content %}
+<div class="container mt-4">
+
+    <h1>{{ produto.nome }}</h1>
+    
+    <img src="{{ url_for('static', filename='imagens/' + produto.imagem) }}" width="300">
+
+    <p class="mt-3">{{ produto.descricao }}</p>
+
+    <h3>R$ {{ produto.preco }}</h3>
+
+    <!--Botão whatsapp-->
+     <a 
+      href="https://wa.me/5511999999999?text=Quero comprar {{ produto.nome }} por R$ {{ produto.preco }}" 
+      class="btn btn-success">
+      Comprar via WhatsApp
+    </a>
+</div>
+{{% endblock %}}
