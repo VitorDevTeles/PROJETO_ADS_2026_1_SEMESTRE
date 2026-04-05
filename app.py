@@ -97,6 +97,36 @@ def ver_produto(id):
     produto = Produto.query.get_or_404(id)
     return render_template("produto.html", produto=produto)
 
+from werkzeug.utils import secure_filename
+import os
+
+@app.route('/cadastrar', methods=['GET', 'POST'])
+def cadastrar():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        descricao = request.form['descricao']
+        preco = request.form['preco']
+
+        imagem = request.files['imagem']
+
+        nome_arquivo = secure_filename(imagem.filename)
+
+        caminho = os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo)
+        imagem.save(caminho)
+
+        # 👇 SALVA SÓ O NOME NO BANCO
+        novo_produto = Produto(
+            nome=nome,
+            descricao=descricao,
+            preco=preco,
+            imagem=nome_arquivo
+        )
+
+        db.session.add(novo_produto)
+        db.session.commit()
+
+        return redirect('/')
+
 # =========================
 # AUTH
 # =========================

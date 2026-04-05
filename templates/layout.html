@@ -16,8 +16,8 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
         <span class="navbar-brand">Minha Vitrine</span>
-
-        <div>
+    <div>
+         <a href="/" class="btn btn-outline-light"> 🏠 Home</a>
              {% if session.get("admin") %}
     <a href="/admin" class="btn btn-warning ms-2">
         ➕ Cadastrar Produto
@@ -37,6 +37,19 @@
     {% block content %}
     {% endblock %}
 </div>
+
+<a href="#" onclick="enviarCarrinho()" 
+   class="btn btn-success"
+   style="
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   border-radius: 50%;
+   padding: 15px;
+   font-size: 20px;
+   z-index: 999;">
+   🛒
+</a>
 
 </body>
 </html>
